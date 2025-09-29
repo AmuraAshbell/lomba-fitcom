@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Shop - Items Management</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    /* burgerBar */
+    .burgerBar {
+      min-height: 100vh;
+      background: #d32f2f;
+      color: #fff;
+      padding-top: 20px;
+    }
+    .burgerBar a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+    }
+    .burgerBar a:hover {
+      background: #b71c1c;
+    }
+
+    /* sidebar */
+    .sidebar {
+      min-height: 100vh;
+      background: #d32f2f;
+      color: #fff;
+      padding-top: 20px;
+    }
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+    }
+    .sidebar a:hover {
+      background: #b71c1c;
+    }
+    .card-header {
+      background: #d32f2f;
+      color: white;
+    }
+    /* Agar sidebar hilang di mobile, tampil lewat offcanvas */
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===============================
+     NAVBAR (HAMBURGER UNTUK MOBILE)
+     =============================== -->
+<nav class="navbar navbar-dark bg-danger d-md-none">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">📱 Mobile Shop</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===============================
+     OFFCANVAS MENU (MOBILE HAMBURGER)
+     =============================== -->
+<div class="offcanvas offcanvas-end text-bg-danger" id="mobileMenu">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">📱 Mobile Shop</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body burgerBar">
+    <a href="#">Items</a>
+    <a href="#">Suppliers</a>
+    <a href="#">Categories</a>
+    <a href="#">Selling</a>
+    <a href="#">Dashboard</a>
+    <a href="#">Logout</a>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    
+    <!-- ===============================
+         SIDEBAR (HILANG DI MOBILE)
+         =============================== -->
+    <nav class="sidebar col-md-2 col-lg-2">
+      <h4 class="text-center mb-4">📱 Mobile Shop</h4>
+      <a href="#">Items</a>
+      <a href="#">Suppliers</a>
+      <a href="#">Categories</a>
+      <a href="#">Selling</a>
+      <a href="#">Dashboard</a>
+      <a href="#">Logout</a>
+    </nav>
+
+    <!-- ===============================
+         MAIN CONTENT
+         =============================== -->
+    <main class="col-md-10 col-lg-10 col-sm-12 p-4">
+      <div class="row g-4">
+        
+        <!-- FORM ADD ITEM -->
+        <div class="col-lg-5 col-md-6 col-sm-12">
+          <div class="card">
+            <div class="card-header">➕ Add New Item</div>
+            <div class="card-body">
+              <form>
+                <div class="mb-3">
+                  <label class="form-label">Item Name</label>
+                  <input type="text" class="form-control" placeholder="Enter item name">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Category</label>
+                  <select class="form-select">
+                    <option>Phone Covers</option>
+                    <option>Mobile Phone</option>
+                    <option>Tablets</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Supplier</label>
+                  <select class="form-select">
+                    <option>Poco X6 Pro 5G</option>
+                    <option>Iphone 16 Pro Max</option>
+                    <option>Samsung S25 Ultra</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Quantity in Stock</label>
+                  <input type="number" class="form-control" placeholder="Enter quantity">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Purchase Price (IDR)</label>
+                  <input type="number" class="form-control" placeholder="Enter purchase price">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Selling Price (IDR)</label>
+                  <input type="number" class="form-control" placeholder="Enter selling price">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Description (Optional)</label>
+                  <textarea class="form-control" rows="2" placeholder="Enter description"></textarea>
+                </div>
+                <button class="btn btn-danger w-100">💾 Save Item</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- TABEL ITEMS -->
+        <div class="col-lg-7 col-md-6 col-sm-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>📦 Current Stock Items</span>
+                </div>
+                <div class="card-body p-0">
+                    <!-- TABLE FOR DESKTOP -->
+                    <div class="table-responsive d-none d-md-block">
+                        <table class="table table-striped mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#ID</th>
+                                    <th>Item Name</th>
+                                    <th>Category</th>
+                                    <th>Supplier</th>
+                                    <th>Stock</th>
+                                    <th>Selling Price (₹)</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Techno Camon 30</td>
+                                    <td>Mobile Phone</td>
+                                    <td>Techno Karnataka</td>
+                                    <td>44</td>
+                                    <td>₹ 16,000.00</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">Edit</button>
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Vivo V15</td>
+                                    <td>Tablets</td>
+                                    <td>Xiaomi Bangalore</td>
+                                    <td>98</td>
+                                    <td>₹ 13,000.00</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">Edit</button>
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- CARD LIST FOR MOBILE -->
+                    <div class="d-block d-md-none">
+                        <div class="mb-3">
+                            <div class="border rounded p-3 mb-2 bg-light">
+                                <div class="fw-bold">Techno Camon 30 <span class="badge bg-secondary float-end">#3</span></div>
+                                <div><strong>Category:</strong> Mobile Phone</div>
+                                <div><strong>Supplier:</strong> Techno Karnataka</div>
+                                <div><strong>Stock:</strong> 44</div>
+                                <div><strong>Selling Price:</strong> ₹ 16,000.00</div>
+                                <div class="mt-2">
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                </div>
+                            </div>
+                            <div class="border rounded p-3 mb-2 bg-light">
+                                <div class="fw-bold">Vivo V15 <span class="badge bg-secondary float-end">#1</span></div>
+                                <div><strong>Category:</strong> Tablets</div>
+                                <div><strong>Supplier:</strong> Xiaomi Bangalore</div>
+                                <div><strong>Stock:</strong> 98</div>
+                                <div><strong>Selling Price:</strong> ₹ 13,000.00</div>
+                                <div class="mt-2">
+                                    <button class="btn btn-primary btn-sm">Edit</button>
+                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END CARD LIST FOR MOBILE -->
+                </div>
+            </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
